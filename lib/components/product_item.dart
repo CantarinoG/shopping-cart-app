@@ -24,14 +24,16 @@ class ProductItem extends StatelessWidget {
             product.title,
             textAlign: TextAlign.center,
           ),
-          backgroundColor: Colors.black54,
+          backgroundColor: Colors.black87,
           leading: IconButton(
             onPressed: () {},
             icon: Icon(Icons.favorite),
+            color: Theme.of(context).colorScheme.secondary,
           ),
           trailing: IconButton(
             onPressed: () {},
             icon: Icon(Icons.shopping_cart),
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ),
