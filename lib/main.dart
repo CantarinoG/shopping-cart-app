@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/models/product_list.dart';
 import 'package:shop/pages/counter_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/products_overview_page.dart';
@@ -16,7 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData(fontFamily: 'Lato');
 
-    return CounterProvider(
+    return ChangeNotifierProvider(
+      create: (_) => ProductList(),
       child: MaterialApp(
         title: 'Flutter Demo',
         home: ProductsOverviewPage(),
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         routes: {
-          AppRoutes.PRODUCT_DETAIL: (ctx) => CounterPage(),
+          AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage(),
         },
       ),
     );
