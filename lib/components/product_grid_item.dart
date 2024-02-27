@@ -5,8 +5,8 @@ import '../utils/app_routes.dart';
 
 import '../models/product.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({
+class ProductGridItem extends StatelessWidget {
+  const ProductGridItem({
     super.key,
   });
 
@@ -54,6 +54,15 @@ class ProductItem extends StatelessWidget {
           ),
           trailing: IconButton(
             onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Produto adicionado com sucesso!"),
+                duration: Duration(seconds: 2),
+                action: SnackBarAction(
+                    label: 'DESFAZER',
+                    onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    }),
+              ));
               cart.addItem(product);
             },
             icon: Icon(Icons.shopping_cart),
