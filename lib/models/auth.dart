@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop/exceptions/auth_exception.dart';
 import 'package:shop/utils/secrets.dart';
 
 class Auth with ChangeNotifier {
@@ -22,13 +23,17 @@ class Auth with ChangeNotifier {
         },
       ),
     );
+    final body = jsonDecode(response.body);
+    if (body['error'] != null) {
+      throw AuthException(body['error']['message']);
+    }
   }
 
   Future<void> signup(String email, String password) async {
-    _authenticate(email, password, false);
+    return _authenticate(email, password, false);
   }
 
   Future<void> login(String email, String password) async {
-    _authenticate(email, password, true);
+    return _authenticate(email, password, true);
   }
 }
