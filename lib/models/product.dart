@@ -26,13 +26,13 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> toggleFavorite() async {
+  Future<void> toggleFavorite(String token) async {
     try {
       _toggleFavorite();
 
       const _baseUrl = Secrets.BASE_URL;
       final response = await http.patch(
-        Uri.parse("${_baseUrl}/products/${id}.json"),
+        Uri.parse("${_baseUrl}/products/${id}.json?auth=$token"),
         body: jsonEncode(
           {"isFavorite": isFavorite},
         ),

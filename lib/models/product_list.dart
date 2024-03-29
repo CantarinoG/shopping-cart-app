@@ -8,6 +8,7 @@ import 'package:shop/models/product.dart';
 import 'package:shop/utils/secrets.dart';
 
 class ProductList with ChangeNotifier {
+  String _token;
   List<Product> _items = [];
   final _baseUrl = Secrets.BASE_URL;
 
@@ -15,13 +16,16 @@ class ProductList with ChangeNotifier {
     return [..._items];
   }
 
+  ProductList(this._token, this._items);
+
   int get itemsCount {
     return _items.length;
   }
 
   Future<void> loadProducts() async {
     _items.clear();
-    final response = await http.get(Uri.parse("${_baseUrl}/products.json"));
+    final response =
+        await http.get(Uri.parse("${_baseUrl}/products.json?auth=$_token"));
     if (response.body == 'null') return;
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((productId, productData) {
@@ -42,16 +46,17 @@ class ProductList with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) {
-    final future = http.post(Uri.parse("${_baseUrl}/products.json"),
-        body: jsonEncode(
-          {
-            "name": product.name,
-            "description": product.description,
-            "price": product.price,
-            "imageUrl": product.imageUrl,
-            "isFavorite": product.isFavorite,
-          },
-        ));
+    final future =
+        http.post(Uri.parse("${_baseUrl}/products.json?auth=$_token"),
+            body: jsonEncode(
+              {
+                "name": product.name,
+                "description": product.description,
+                "price": product.price,
+                "imageUrl": product.imageUrl,
+                "isFavorite": product.isFavorite,
+              },
+            ));
 
     return future.then<void>((response) {
       final id = jsonDecode(response.body)['name'];
@@ -90,7 +95,7 @@ class ProductList with ChangeNotifier {
 
     if (index >= 0) {
       await http.patch(
-        Uri.parse("${_baseUrl}/products/${product.id}.json"),
+        Uri.parse("${_baseUrl}/products/${product.id}.json?auth=$_token"),
         body: jsonEncode(
           {
             "name": product.name,
@@ -114,7 +119,7 @@ class ProductList with ChangeNotifier {
       notifyListeners();
 
       final response = await http.delete(
-        Uri.parse("${_baseUrl}/products/${product.id}.json"),
+        Uri.parse("${_baseUrl}/products/${product.id}.json?auth=$_token"),
       );
 
       if (response.statusCode >= 400) {
