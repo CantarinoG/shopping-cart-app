@@ -11,7 +11,10 @@ class OrderList with ChangeNotifier {
   List<Order> _items = [];
   static const _baseUrl = Secrets.BASE_URL;
 
-  OrderList(this._token, this._items);
+  OrderList([
+    this._token = '',
+    this._items = const [],
+  ]);
 
   List<Order> get items {
     return [..._items];
