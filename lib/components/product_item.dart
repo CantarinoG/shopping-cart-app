@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/models/product.dart';
@@ -32,7 +34,7 @@ class ProductItem extends StatelessWidget {
                   arguments: product,
                 );
               },
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
               color: Theme.of(context).colorScheme.primary,
             ),
             IconButton(
@@ -40,14 +42,14 @@ class ProductItem extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (ctx) => AlertDialog(
-                          title: Text("Excluir Produto"),
-                          content: Text("Tem certeza?"),
+                          title: const Text("Excluir Produto"),
+                          content: const Text("Tem certeza?"),
                           actions: [
                             TextButton(
                               onPressed: () {
                                 return Navigator.of(ctx).pop();
                               },
-                              child: Text("Não"),
+                              child: const Text("Não"),
                             ),
                             TextButton(
                               onPressed: () async {
@@ -62,12 +64,12 @@ class ProductItem extends StatelessWidget {
                                       content: Text(error.toString())));
                                 }
                               },
-                              child: Text("Sim"),
+                              child: const Text("Sim"),
                             )
                           ],
                         ));
               },
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
               color: Theme.of(context).colorScheme.error,
             ),
           ],

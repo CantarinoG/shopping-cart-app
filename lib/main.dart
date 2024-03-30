@@ -62,12 +62,12 @@ class MyApp extends StatelessWidget {
           ),
         ),
         routes: {
-          AppRoutes.AUTH_OR_HOME: (ctx) => AuthOrHomePage(),
-          AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage(),
-          AppRoutes.CART: (ctx) => CartPage(),
-          AppRoutes.ORDERS: (ctx) => OrdersPage(),
-          AppRoutes.PRODUCTS: (ctx) => ProductsPage(),
-          AppRoutes.PRODUCT_FORM: (ctx) => ProductFormPage(),
+          AppRoutes.AUTH_OR_HOME: (ctx) => const AuthOrHomePage(),
+          AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailPage(),
+          AppRoutes.CART: (ctx) => const CartPage(),
+          AppRoutes.ORDERS: (ctx) => const OrdersPage(),
+          AppRoutes.PRODUCTS: (ctx) => const ProductsPage(),
+          AppRoutes.PRODUCT_FORM: (ctx) => const ProductFormPage(),
         },
       ),
     );

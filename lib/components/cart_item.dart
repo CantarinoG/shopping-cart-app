@@ -18,19 +18,19 @@ class CartItemWidget extends StatelessWidget {
         return showDialog<bool>(
             context: context,
             builder: (ctx) => AlertDialog(
-                  title: Text("Tem Certeza?"),
-                  content: Text("Quer remover o item do carrinho?"),
+                  title: const Text("Tem Certeza?"),
+                  content: const Text("Quer remover o item do carrinho?"),
                   actions: [
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(false);
                         },
-                        child: Text("Não")),
+                        child: const Text("Não")),
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(true);
                         },
-                        child: Text("Sim"))
+                        child: const Text("Sim"))
                   ],
                 ));
       },
@@ -44,29 +44,29 @@ class CartItemWidget extends StatelessWidget {
       direction: DismissDirection.endToStart,
       background: Container(
         color: Theme.of(context).colorScheme.error,
-        child: Icon(
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(
+          right: 20,
+        ),
+        margin: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 4,
+        ),
+        child: const Icon(
           Icons.delete,
           color: Colors.white,
           size: 40,
         ),
-        alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(
-          right: 20,
-        ),
-        margin: EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 4,
-        ),
       ),
       child: Card(
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 4,
         ),
         child: ListTile(
           leading: CircleAvatar(
             child: Padding(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
               child: FittedBox(
                 child: Text("${cartItem.price}"),
               ),

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/exceptions/auth_exception.dart';
@@ -25,7 +27,7 @@ class _AuthFormState extends State<AuthForm>
 
   bool _isLoading = false;
 
-  Map<String, String> _authData = {
+  final Map<String, String> _authData = {
     "email": "",
     "password": "",
   };
@@ -42,7 +44,7 @@ class _AuthFormState extends State<AuthForm>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(
+      duration: const Duration(
         milliseconds: 300,
       ),
     );
@@ -58,8 +60,8 @@ class _AuthFormState extends State<AuthForm>
     );
 
     _slideAnimation = Tween<Offset>(
-      begin: Offset(0, -1.5),
-      end: Offset(0, 0),
+      begin: const Offset(0, -1.5),
+      end: const Offset(0, 0),
     ).animate(
       CurvedAnimation(
         parent: _controller!,
@@ -92,12 +94,12 @@ class _AuthFormState extends State<AuthForm>
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text("Ocorreu um erro!"),
+        title: const Text("Ocorreu um erro!"),
         content: Text(msg),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(
+            child: const Text(
               "Fechar",
             ),
           ),
@@ -151,9 +153,9 @@ class _AuthFormState extends State<AuthForm>
         borderRadius: BorderRadius.circular(10),
       ),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeIn,
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         height: _isLogin() ? 310 : 400,
         width: deviceSize.width * 0.75,
         child: Form(
@@ -161,7 +163,7 @@ class _AuthFormState extends State<AuthForm>
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Email",
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -175,7 +177,7 @@ class _AuthFormState extends State<AuthForm>
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "Senha",
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -195,7 +197,7 @@ class _AuthFormState extends State<AuthForm>
                   minHeight: _isLogin() ? 0 : 60,
                   maxHeight: _isLogin() ? 0 : 120,
                 ),
-                duration: Duration(
+                duration: const Duration(
                   milliseconds: 500,
                 ),
                 curve: Curves.linear,
@@ -204,7 +206,7 @@ class _AuthFormState extends State<AuthForm>
                   child: SlideTransition(
                     position: _slideAnimation!,
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Confirmar Senha",
                       ),
                       keyboardType: TextInputType.emailAddress,
@@ -222,27 +224,27 @@ class _AuthFormState extends State<AuthForm>
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               _isLoading
-                  ? CircularProgressIndicator()
+                  ? const CircularProgressIndicator()
                   : ElevatedButton(
                       onPressed: _submit,
-                      child: Text(
-                        _isLogin() ? 'ENTRAR' : 'REGISTRAR',
-                      ),
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 30,
                           vertical: 8,
                         ),
                       ),
+                      child: Text(
+                        _isLogin() ? 'ENTRAR' : 'REGISTRAR',
+                      ),
                     ),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 onPressed: _switchAuthMode,
                 child:

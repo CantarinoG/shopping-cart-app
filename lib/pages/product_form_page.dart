@@ -1,4 +1,4 @@
-import 'dart:math';
+// ignore_for_file: no_leading_underscores_for_local_identifiers, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +18,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final _imageUrlFocus = FocusNode();
   final _imageUrlController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final _formData = Map<String, Object>();
+  final _formData = <String, Object>{};
   bool _isLoading = false;
 
   @override
@@ -83,14 +83,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
       return showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text("Ocorreu um erro!"),
-          content: Text("Ocorreu um erro para salvar o produto."),
+          title: const Text("Ocorreu um erro!"),
+          content: const Text("Ocorreu um erro para salvar o produto."),
           actions: [
             TextButton(
                 onPressed: () {
                   return Navigator.of(context).pop();
                 },
-                child: Text("Ok"))
+                child: const Text("Ok"))
           ],
         ),
       );
@@ -106,18 +106,18 @@ class _ProductFormPageState extends State<ProductFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Formulário de Produto"),
+        title: const Text("Formulário de Produto"),
         actions: [
           IconButton(
             onPressed: () {
               _submitForm();
             },
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
           )
         ],
       ),
       body: _isLoading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : Padding(
@@ -128,7 +128,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   children: [
                     TextFormField(
                       initialValue: (_formData['name'] ?? "") as String,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Nome",
                       ),
                       textInputAction: TextInputAction.next,
@@ -152,12 +152,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     TextFormField(
                       initialValue: _formData['price']?.toString(),
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Preço",
                       ),
                       textInputAction: TextInputAction.next,
                       focusNode: _priceFocus,
-                      keyboardType: TextInputType.numberWithOptions(
+                      keyboardType: const TextInputType.numberWithOptions(
                         decimal: true,
                       ),
                       onFieldSubmitted: (_) {
@@ -178,7 +178,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     ),
                     TextFormField(
                       initialValue: (_formData['description'] ?? "") as String,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "Descrição",
                       ),
                       focusNode: _descriptionFocus,
@@ -205,7 +205,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         Expanded(
                           child: TextFormField(
                             controller: _imageUrlController,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               labelText: "URL da Imagem",
                             ),
                             focusNode: _imageUrlFocus,
@@ -230,7 +230,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         Container(
                           height: 100,
                           width: 100,
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                             top: 10,
                             left: 10,
                           ),
@@ -242,14 +242,14 @@ class _ProductFormPageState extends State<ProductFormPage> {
                           ),
                           alignment: Alignment.center,
                           child: _imageUrlController.text.isEmpty
-                              ? Text("Informe a URL")
+                              ? const Text("Informe a URL")
                               : Container(
                                   width: 100,
                                   height: 100,
                                   child: FittedBox(
+                                    fit: BoxFit.cover,
                                     child:
                                         Image.network(_imageUrlController.text),
-                                    fit: BoxFit.cover,
                                   ),
                                 ),
                         )

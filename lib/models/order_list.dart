@@ -30,7 +30,7 @@ class OrderList with ChangeNotifier {
     List<Order> items = [];
 
     final response = await http
-        .get(Uri.parse("${_baseUrl}/orders/$_userId.json?auth=$_token"));
+        .get(Uri.parse("$_baseUrl/orders/$_userId.json?auth=$_token"));
     if (response.body == 'null') return;
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((orderId, orderData) {
@@ -56,7 +56,7 @@ class OrderList with ChangeNotifier {
   Future<void> addOrder(Cart cart) async {
     final date = DateTime.now();
     final response = await http.post(
-        Uri.parse("${_baseUrl}/orders/$_userId.json?auth=$_token"),
+        Uri.parse("$_baseUrl/orders/$_userId.json?auth=$_token"),
         body: jsonEncode(
           {
             "total": cart.totalAmount,

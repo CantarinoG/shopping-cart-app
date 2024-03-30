@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/components/app_drawer.dart';
@@ -10,7 +12,7 @@ import 'package:shop/utils/app_routes.dart';
 enum FilterOptions { Favorite, All }
 
 class ProductsOverviewPage extends StatefulWidget {
-  ProductsOverviewPage({super.key});
+  const ProductsOverviewPage({super.key});
 
   @override
   State<ProductsOverviewPage> createState() => _ProductsOverviewPageState();
@@ -34,19 +36,19 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Minha Loja",
         ),
         actions: [
           PopupMenuButton(
             itemBuilder: (_) => [
-              PopupMenuItem(
-                child: Text("Somente Favoritos"),
+              const PopupMenuItem(
                 value: FilterOptions.Favorite,
+                child: Text("Somente Favoritos"),
               ),
-              PopupMenuItem(
-                child: Text("Todos os Produtos"),
+              const PopupMenuItem(
                 value: FilterOptions.All,
+                child: Text("Todos os Produtos"),
               )
             ],
             onSelected: (FilterOptions selectedValue) {
@@ -64,23 +66,23 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.CART);
               },
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
             ),
             builder: (ctx, cart, child) => Badgee(
-              child: child!,
               value: cart.itemsCount.toString(),
+              child: child!,
             ),
           ),
         ],
       ),
       body: _isLoading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ProductGrid(
               showFavoriteOnly: _showFavoriteOnly,
             ),
-      drawer: AppDrawer(),
+      drawer: const AppDrawer(),
     );
   }
 }

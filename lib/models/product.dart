@@ -1,8 +1,9 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop/exceptions/http_exception.dart';
 import 'package:shop/utils/secrets.dart';
 
 class Product with ChangeNotifier {
@@ -32,7 +33,7 @@ class Product with ChangeNotifier {
 
       const _baseUrl = Secrets.BASE_URL;
       final response = await http.put(
-        Uri.parse("${_baseUrl}/userFavorite/$userId/${id}.json?auth=$token"),
+        Uri.parse("$_baseUrl/userFavorite/$userId/$id.json?auth=$token"),
         body: jsonEncode(
           isFavorite,
         ),

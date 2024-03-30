@@ -14,34 +14,34 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Carrinho"),
+        title: const Text("Carrinho"),
       ),
       body: Column(
         children: [
           Card(
-            margin: EdgeInsets.all(25),
+            margin: const EdgeInsets.all(25),
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Total",
                     style: TextStyle(
                       fontSize: 20,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Chip(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
                       "R\$${cart.totalAmount.toStringAsFixed(2)}",
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   CartButton(cart: cart)
                 ],
               ),
@@ -77,7 +77,7 @@ class _CartButtonState extends State<CartButton> {
   @override
   Widget build(BuildContext context) {
     return _isLoading
-        ? CircularProgressIndicator()
+        ? const CircularProgressIndicator()
         : TextButton(
             onPressed: widget.cart.itemsCount == 0
                 ? null
@@ -94,12 +94,12 @@ class _CartButtonState extends State<CartButton> {
                     });
                     widget.cart.clear();
                   },
-            child: Text("COMPRAR"),
             style: TextButton.styleFrom(
               textStyle: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
+            child: const Text("COMPRAR"),
           );
   }
 }

@@ -27,7 +27,7 @@ class ProductDetailPage extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  DecoratedBox(
+                  const DecoratedBox(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
@@ -46,22 +46,22 @@ class ProductDetailPage extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   'R\$ ${product.price}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 20,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   width: double.infinity,
                   child: Text(
                     product.description,

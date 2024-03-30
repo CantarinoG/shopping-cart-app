@@ -13,7 +13,7 @@ class _CounterPageState extends State<CounterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Exemplo Contador",
         ),
       ),
@@ -26,7 +26,7 @@ class _CounterPageState extends State<CounterPage> {
                 CounterProvider.of(context)?.state.inc();
               });
             },
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
           IconButton(
             onPressed: () {
@@ -34,7 +34,7 @@ class _CounterPageState extends State<CounterPage> {
                 CounterProvider.of(context)?.state.dec();
               });
             },
-            icon: Icon(Icons.remove),
+            icon: const Icon(Icons.remove),
           ),
         ],
       ),

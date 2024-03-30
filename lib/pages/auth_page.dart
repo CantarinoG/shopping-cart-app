@@ -1,4 +1,4 @@
-import 'dart:math';
+// ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:shop/components/auth_form.dart';
@@ -12,7 +12,7 @@ class AuthPage extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -32,24 +32,24 @@ class AuthPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         bottom: 20,
                       ),
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 70,
                       ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.deepOrange.shade900,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 8,
                               color: Colors.black26,
                               offset: Offset(0, 2),
                             ),
                           ]),
-                      child: Text(
+                      child: const Text(
                         "Minha Loja",
                         style: TextStyle(
                           fontSize: 45,
@@ -58,7 +58,7 @@ class AuthPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    AuthForm(),
+                    const AuthForm(),
                   ],
                 ),
               ),

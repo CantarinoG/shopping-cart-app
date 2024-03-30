@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'dart:convert';
 import 'dart:math';
 
@@ -31,12 +33,12 @@ class ProductList with ChangeNotifier {
     _items.clear();
 
     final response =
-        await http.get(Uri.parse("${_baseUrl}/products.json?auth=$_token"));
+        await http.get(Uri.parse("$_baseUrl/products.json?auth=$_token"));
 
     if (response.body == 'null') return;
 
     final favResponse = await http.get(
-      Uri.parse("${_baseUrl}/userFavorite/$_userId.json?auth=$_token"),
+      Uri.parse("$_baseUrl/userFavorite/$_userId.json?auth=$_token"),
     );
 
     Map<String, dynamic> favData =
@@ -61,16 +63,15 @@ class ProductList with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) {
-    final future =
-        http.post(Uri.parse("${_baseUrl}/products.json?auth=$_token"),
-            body: jsonEncode(
-              {
-                "name": product.name,
-                "description": product.description,
-                "price": product.price,
-                "imageUrl": product.imageUrl,
-              },
-            ));
+    final future = http.post(Uri.parse("$_baseUrl/products.json?auth=$_token"),
+        body: jsonEncode(
+          {
+            "name": product.name,
+            "description": product.description,
+            "price": product.price,
+            "imageUrl": product.imageUrl,
+          },
+        ));
 
     return future.then<void>((response) {
       final id = jsonDecode(response.body)['name'];
@@ -108,7 +109,7 @@ class ProductList with ChangeNotifier {
 
     if (index >= 0) {
       await http.patch(
-        Uri.parse("${_baseUrl}/products/${product.id}.json?auth=$_token"),
+        Uri.parse("$_baseUrl/products/${product.id}.json?auth=$_token"),
         body: jsonEncode(
           {
             "name": product.name,
@@ -132,7 +133,7 @@ class ProductList with ChangeNotifier {
       notifyListeners();
 
       final response = await http.delete(
-        Uri.parse("${_baseUrl}/products/${product.id}.json?auth=$_token"),
+        Uri.parse("$_baseUrl/products/${product.id}.json?auth=$_token"),
       );
 
       if (response.statusCode >= 400) {

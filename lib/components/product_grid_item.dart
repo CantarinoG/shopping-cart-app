@@ -29,22 +29,6 @@ class ProductGridItem extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
-        child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              AppRoutes.PRODUCT_DETAIL,
-              arguments: product,
-            );
-          },
-          child: Hero(
-            tag: product.id,
-            child: FadeInImage(
-              placeholder: AssetImage('assets/images/product-placeholder.png'),
-              image: NetworkImage(product.imageUrl),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
         footer: GridTileBar(
           title: Text(
             product.name,
@@ -69,8 +53,8 @@ class ProductGridItem extends StatelessWidget {
             onPressed: () {
               ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("Produto adicionado com sucesso!"),
-                duration: Duration(seconds: 2),
+                content: const Text("Produto adicionado com sucesso!"),
+                duration: const Duration(seconds: 2),
                 action: SnackBarAction(
                     label: 'DESFAZER',
                     onPressed: () {
@@ -79,8 +63,25 @@ class ProductGridItem extends StatelessWidget {
               ));
               cart.addItem(product);
             },
-            icon: Icon(Icons.shopping_cart),
+            icon: const Icon(Icons.shopping_cart),
             color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              AppRoutes.PRODUCT_DETAIL,
+              arguments: product,
+            );
+          },
+          child: Hero(
+            tag: product.id,
+            child: FadeInImage(
+              placeholder:
+                  const AssetImage('assets/images/product-placeholder.png'),
+              image: NetworkImage(product.imageUrl),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
