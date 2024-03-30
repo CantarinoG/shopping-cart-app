@@ -28,39 +28,39 @@ class _OrderWidgetState extends State<OrderWidget> {
                     _expanded = !_expanded;
                   });
                 },
-                icon: Icon(Icons.expand_more)),
+                icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more)),
           ),
-          if (_expanded)
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 4,
-              ),
-              height: (widget.order.products.length * 25) + 10,
-              child: ListView(
-                children: widget.order.products.map((product) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        product.name,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+          AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            padding: EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 4,
+            ),
+            height: _expanded ? ((widget.order.products.length * 25) + 10) : 0,
+            child: ListView(
+              children: widget.order.products.map((product) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      product.name,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(
-                        '${product.quantity}x R\$ ${product.price}',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.grey,
-                        ),
+                    ),
+                    Text(
+                      '${product.quantity}x R\$ ${product.price}',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.grey,
                       ),
-                    ],
-                  );
-                }).toList(),
-              ),
-            )
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+          )
         ],
       ),
     );
