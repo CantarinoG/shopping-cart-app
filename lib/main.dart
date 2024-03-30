@@ -10,6 +10,7 @@ import 'package:shop/pages/orders_page.dart';
 import 'package:shop/pages/product_detail_page.dart';
 import 'package:shop/pages/product_form_page.dart';
 import 'package:shop/pages/produtcts_page.dart';
+import 'package:shop/utils/custom_route.dart';
 import './utils/app_routes.dart';
 
 void main() {
@@ -21,7 +22,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = ThemeData(fontFamily: 'Lato');
+    final ThemeData theme = ThemeData(
+      fontFamily: 'Lato',
+      pageTransitionsTheme: PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: CustomPageTransitionsBuilder(),
+          TargetPlatform.linux: CustomPageTransitionsBuilder(),
+        },
+      ),
+    );
 
     return MultiProvider(
       providers: [
